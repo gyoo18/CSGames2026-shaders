@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "macros": [
+    [ "GRID_SIZE", "10" ]
+  ],
+  "storage_buffers": [
+    {
+      "name": "snake",
+      "size": 804, // 4 + 8x10x10 (=uint + ivec2*grid_size^2), feel free to add anything you might need
+    }
+  ],
+  "layers": [
+    { "pass": "clear" },
+    {
+      "pass": "compute",
+      "compute": "c_snake.cs",
+      "executions": [ { "type": "on_reset" } ],
+      "macros": [ "RESET" ],
+      "storage_buffers": [ { "name": "snake" } ],
+    },
+    {
+      "pass": "compute",
+      "compute": "c_snake.cs",
+      "storage_buffers": [ { "name": "snake" } ],
+    },
+    {
+      "fragment": "c_snake.fs",
+      "storage_buffers": [ { "name": "snake" } ],
+    },
+  ],
+}

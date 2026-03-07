@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "render_targets": [
+    {
+      "name": "gol",
+      "width": 100,
+      "height": 100,
+      "screen_relative": false,
+    }
+  ],
+  "layers": [
+    {
+      "fragment": "b_gameoflife.fs",
+      "macros": [ "INIT" ],
+      "uniforms": [ { "name": "u_texture", "value": "gol" } ],
+      "targets": [ "gol" ],
+      "executions": [ { "type": "on_reset" } ],
+    },
+    { "pass": "clear" },
+    {
+      "fragment": "b_gameoflife.fs",
+      "uniforms": [ { "name": "u_texture", "value": "gol" } ],
+      "targets": [ "gol" ],
+    },
+    { "pass": "blit", "source": "gol", "targets": [ "screen" ] },
+  ],
+}

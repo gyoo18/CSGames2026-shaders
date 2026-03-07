@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "render_targets": [
+    {
+      "name": "depth",
+      "width": 1,
+      "height": 1,
+      "type": "depth",
+    }
+  ],
+  "layers": [
+    { "pass": "clear", "targets": [ "screen", "depth" ] },
+    {
+      "model": "models/computer.fbx",
+      "vertex": "e_retro.vs",
+      "fragment": "e_retro.fs",
+      "depth_test": true,
+      "depth_write": true,
+      "targets": [ "screen", "depth" ],
+      "macros": [ "COMPUTER" ],
+    },
+    {
+      "model": "models/computer_screen.obj",
+      "vertex": "e_retro.vs",
+      "fragment": "e_retro.fs",
+      "depth_test": true,
+      "depth_write": true,
+      "culling": "none",
+      "targets": [ "screen", "depth" ],
+      "macros": [ "SCREEN" ],
+    },
+    {
+      "fragment": "e_retro_gaussian.fs",
+      "uniforms": [ { "name": "u_texture", "value": "screen" } ]
+    }
+  ],
+}
